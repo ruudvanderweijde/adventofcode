@@ -2,17 +2,16 @@
 
 function handle(string $filename): int
 {
-    $doubles = 0;
-    if ($handle = fopen($filename, "r")) {
-        while (($line = fgets($handle)) !== false) {
-            preg_match('/(\d+)-(\d+),(\d+)-(\d+)/', rtrim($line), $matches);
-            [, $ll, $lr, $rl, $rr] = $matches;
-            $doubles += array_intersect(range($ll, $lr), range($rl, $rr))? 1 : 0;
-        }
-        fclose($handle);
-    }
-
-    return $doubles;
+    return count(
+        array_filter(
+            file($filename),
+            function(string $line): bool {
+                preg_match('/(\d+)-(\d+),(\d+)-(\d+)/', rtrim($line), $matches);
+                [, $ll, $lr, $rl, $rr] = $matches;
+                return count(array_intersect(range($ll, $lr), range($rl, $rr))) > 0;
+            }
+        )
+    );
 }
 
 $testScore = handle('input-test');
