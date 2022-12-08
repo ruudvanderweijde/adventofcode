@@ -83,46 +83,13 @@ Consider each tree on your map. What is the highest scenic score possible for an
 Answers using php:
 ```
 > docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test
-- root (dir=48381165)
-  - / (dir=48381165)
-    - a (dir=94853)
-      - e (dir=584)
-        - i (file=584)
-      - f (file=29116)
-      - g (file=2557)
-      - h.lst (file=62596)
-    - b.txt (file=14848514)
-    - c.dat (file=8504156)
-    - d (dir=24933642)
-      - j (file=4060174)
-      - d.log (file=8033020)
-      - d.ext (file=5626152)
-      - k (file=7214296)
-95437
-
+21
 > docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
-1886043
-```
+1703
 
-Part two:
-```
 > docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test
-- root (dir=48381165)
-  - / (dir=48381165)
-    - a (dir=94853)
-      - e (dir=584)
-        - i (file=584)
-      - f (file=29116)
-      - g (file=2557)
-      - h.lst (file=62596)
-    - b.txt (file=14848514)
-    - c.dat (file=8504156)
-    - d (dir=24933642)
-      - j (file=4060174)
-      - d.log (file=8033020)
-      - d.ext (file=5626152)
-      - k (file=7214296)
-24933642
+8
 > docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
-3842121
+496650
+
 ```
