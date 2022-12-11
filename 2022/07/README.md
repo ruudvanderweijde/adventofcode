@@ -108,7 +108,7 @@ Find the smallest directory that, if deleted, would free up enough space on the 
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test
 - root (dir=48381165)
   - / (dir=48381165)
     - a (dir=94853)
@@ -126,13 +126,13 @@ Answers using php:
       - k (file=7214296)
 95437
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 1886043
 ```
 
 Part two:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test
 - root (dir=48381165)
   - / (dir=48381165)
     - a (dir=94853)
@@ -149,6 +149,6 @@ Part two:
       - d.ext (file=5626152)
       - k (file=7214296)
 24933642
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
 3842121
 ```

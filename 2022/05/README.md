@@ -131,9 +131,9 @@ Before the rearrangement process finishes, update your simulation so that the El
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php
 string(9) "HBTMTBSDC"
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php
 string(9) "PQTJRSHWS"
 ```

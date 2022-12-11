@@ -1,12 +1,12 @@
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test
 4512
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 29440
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test
 1924
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
 13884
 ```
 

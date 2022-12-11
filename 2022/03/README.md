@@ -73,9 +73,9 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php
 int(12645)
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php
 int(11756)
 ```

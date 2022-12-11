@@ -336,16 +336,16 @@ Render the image given by your program. What eight capital letters appear on you
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test-large
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test-large
 13140
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 16880
 
 ```
 
 Part 2
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test-large
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test-large
 
 ##..##..##..##..##..##..##..##..##..##..
 ###...###...###...###...###...###...###.
@@ -355,7 +355,7 @@ Part 2
 #######.......#######.......#######.....
 
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
 
 ###..#..#..##..####..##....##.###..###..
 #..#.#.#..#..#....#.#..#....#.#..#.#..#.

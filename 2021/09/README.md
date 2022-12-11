@@ -1,7 +1,7 @@
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test
 15
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 532
 
 ## was not able to make part 2 work (yet)

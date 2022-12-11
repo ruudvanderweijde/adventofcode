@@ -1,7 +1,7 @@
 Part one
 
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test debug
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test debug
 26397
 Expected ']', but found '}' instead at pos '12'
 {([(<{}[<>[]}>{[]{[(<()>
@@ -20,13 +20,13 @@ Expected ']', but found '>' instead at pos '16'
 ----------------^
 
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 411471
 ```
 
 Part two:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test debug
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test debug
 288957
 }}]])})] -> 288957 total points
 )}>]}) -> 5566 total points
@@ -34,7 +34,7 @@ Part two:
 ]]}}]}]}> -> 995444 total points
 ])}> -> 294 total points
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
 3122628974
 ```
 

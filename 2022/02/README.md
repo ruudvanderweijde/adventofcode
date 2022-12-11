@@ -50,9 +50,9 @@ Following the Elf's instructions for the second column, what would your total sc
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php
 int(12645)
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php
 int(11756)
 ```

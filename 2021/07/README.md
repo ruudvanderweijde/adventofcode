@@ -1,8 +1,8 @@
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php
 333755
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php
 94017638
 ```
 

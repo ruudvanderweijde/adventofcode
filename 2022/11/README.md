@@ -321,7 +321,7 @@ Worry levels are no longer divided by three after each item is inspected; you'll
 
 Answers using php:
 ```
-docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input-test debug
+docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test debug
 
 > Round 1
 Monkey [0]: 20, 23, 27, 26 (inspections = 2)
@@ -445,7 +445,7 @@ Monkey [3]:  (inspections = 105)
 
 10605
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/one.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 121450
 ```
 
@@ -453,7 +453,7 @@ Part two
 
 After trying many solutions with arithmetic variation, I looked up the logic for the solution.
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input-test print assert | pbcopy
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test print assert | pbcopy
 
 > Round 1
 Monkey [0]: 60, 71, 81, 80 (inspections = 2)
@@ -529,7 +529,7 @@ Monkey [3]:  (inspections = 52013)
 
 2713310158
 
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2.0RC7-cli php /code/two.php input
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
 28244037010
 
 ```
