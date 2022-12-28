@@ -1,5 +1,5 @@
 <?php
-
+$start = microtime(true);
 $in = file($argv[1] ?? 'input-test');
 $options = [];
 $flows = [];
@@ -15,12 +15,13 @@ $queue = [[1, "AA", 0, []]];
 $seen = [];
 while (count($queue) > 0) {
 
-    [$time, $where, $score, $opened] = array_pop($queue);
+    [$time, $location, $score, $opened] = array_pop($queue);
+    //echo "$time $where $score\n";
 
-    if (($seen[$time][$where] ?? -1) >= $score) {
+    if (($seen[$time][$location] ?? -1) >= $score) {
         continue;
     }
-    $seen[$time][$where] = $score;
+    $seen[$time][$location] = $score;
 
     if ($time === 30) {
         $best = max($best, $score);
@@ -28,19 +29,24 @@ while (count($queue) > 0) {
     }
 
     # if we open the valve here
-    if ($flows[$where] > 0 && !($opened[$where] ?? false)) {
-        $opened[$where] = true;
+    if ($flows[$location] > 0 && !($opened[$location] ?? false)) {
+        $opened[$location] = true;
         $newScore = $score + array_sum(array_filter($flows, fn($key) => $opened[$key] ?? false, ARRAY_FILTER_USE_KEY));
-        $queue[] = [$time + 1, $where, $newScore, $opened];
-        unset($opened[$where]);
+        $queue[] = [$time + 1, $location, $newScore, $opened];
+        unset($opened[$location]);
     }
 
     # if we don't open a valve here
     $newScore = $score + array_sum(array_filter($flows, fn($key) => $opened[$key] ?? false, ARRAY_FILTER_USE_KEY));
-    foreach ($options[$where] as $option) {
+    foreach ($options[$location] as $option) {
         $queue[] = [$time + 1, $option, $newScore, $opened];
     }
 }
 
 echo $best;
 echo PHP_EOL;
+echo round(microtime(true) - $start, 2) . ' seconds';
+echo PHP_EOL;
+
+# 0.08 sec input-test
+# 2.26 sec input

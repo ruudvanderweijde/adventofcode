@@ -237,12 +237,19 @@ With you and an elephant working together for 26 minutes, what is the most press
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input-test
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test
 1651
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input
+0.01 seconds
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
 2253
+0.13 seconds
 
-# ... no part 2 yet
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test
+1707
+0.26 seconds
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
+2838
+46.68 seconds
 ```
 
-Part one was inprired by this solution: https://github.com/carrdelling/AdventOfCode2022/blob/main/day16/silver.py
+Part one and two were inspired by: https://github.com/carrdelling/AdventOfCode2022/blob/main/day16
