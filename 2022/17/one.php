@@ -1,10 +1,13 @@
 <?php
 
+$start = microtime(true);
 $debug = 'debug' === ($argv[3] ?? '');
 const SPACE = '.';
 const ROCK = '#';
 
-$rocks = [];
+$rockCount = 0;
+$rocksToProcess = intval(($argv[2] ?? 4000));
+
 $rocksSet = [];
 foreach (explode(PHP_EOL.PHP_EOL, file_get_contents('rocks')) as $i => $rawRock) {
     foreach (explode(PHP_EOL, $rawRock) as $y => $rawRockLine) {
@@ -14,10 +17,6 @@ foreach (explode(PHP_EOL.PHP_EOL, file_get_contents('rocks')) as $i => $rawRock)
             }
         }
     }
-}
-$rockCount = intval(($argv[2] ?? 2022));
-while(count($rocks) < $rockCount) {
-    array_push($rocks, $rocksSet[count($rocks) % count($rocksSet)]);
 }
 
 $grid = [];
@@ -50,12 +49,24 @@ function printGrid(string $description, array $grid, array $rock): void {
 $emptyRow = array_fill(0, 7, '.');
 $addRock = true;
 $rock = [];
+$lastHeight = 0;
+$heightDiff = [];
 while (true) {
     if ($addRock) {
         $addRock = false;
-        if (!($rock = array_shift($rocks))) {
-            break; // we're done, there are no more rocks!
+        $rock = $rocksSet[$rockCount % 5];
+
+        if ($rockCount) {
+            $newHeight = count($grid);
+            $heightDiff[$rockCount] = $newHeight - $lastHeight;
+            $lastHeight = $newHeight;
         }
+
+        echo "$rockCount / $rocksToProcess\r";
+        if (++$rockCount > $rocksToProcess) {
+            break; /* We're done, there are no more rocks! */
+        }
+
 
         // add lines to grid
         $newLines = count(array_unique(array_column($rock, 0))) + 3;
@@ -111,10 +122,43 @@ while (true) {
     }
 }
 
-echo PHP_EOL;
 if ('printGrid' === ($argv[3] ?? '')) {
     $debug = true;
+    echo PHP_EOL;
     printGrid('Final grid:', $grid, []);
 };
-echo count($grid);
 echo PHP_EOL;
+echo 'part 1: ' . array_sum(array_slice($heightDiff, 0, 2022));
+echo ' (in ' . round(microtime(true)-$start, 3) . ' sec)';
+echo PHP_EOL;
+
+[$offset, $length] = getRepeatingSequenceLength($heightDiff, $rocksToProcess);
+if ($offset === -1) {
+    echo 'failed to find a sequence... please increase the length to find a sequence: > ' . $rocksToProcess;
+    echo ' (in ' . round(microtime(true)-$start, 3) . ' sec)';
+    echo PHP_EOL;
+    exit(3);
+}
+$numRepeatingRocks = 1000000000000 - $offset;
+$repeats = floor($numRepeatingRocks / $length);
+$remainder = $numRepeatingRocks % $length;
+
+echo array_sum(array_slice($heightDiff, 0, $offset))
+    + $repeats * array_sum(array_slice($heightDiff, $offset, $length))
+    + array_sum(array_slice($heightDiff, $offset, $remainder))
+;
+echo ' (in ' . round(microtime(true)-$start, 3) . ' sec)';
+echo PHP_EOL;
+
+function getRepeatingSequenceLength(array $heightDiff, int $max): array {
+    for ($length=20; $length < $max / 2; ++$length) {
+        echo "$length / " . $max/2 . "\r";
+        for ($offset=0; $offset < $max / 2; ++$offset) {
+            if (join(array_slice($heightDiff,0+$offset,$length)) === join(array_slice($heightDiff, $length+$offset, $length))) {
+                echo PHP_EOL;
+                return [$offset, $length];
+            }
+        }
+    }
+    return [-1, -1];
+};

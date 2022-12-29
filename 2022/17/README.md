@@ -358,12 +358,36 @@ How tall will the tower be after 1000000000000 rocks have stopped?
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input-test 2022
-3068
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input 2022
-3124
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test 2022
+3068 (in 0.038 sec)
 
-# didn't work out part 2 yet
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input 2022
+3124 (in 0.115 sec)
+
+```
+
+Answers after refactoring part one to include part two:
+```
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test 100
+100 / 100
+part 1: 157 (in 0.004 sec)
+35 / 50
+1514285714288 (in 0.004 sec)
+
+# 100 was enough to find the first sequence for the test input.
+
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input 4000
+4000 / 4000
+part 1: 3124 (in 0.29 sec)
+failed to find a sequence... please increase the length to find a sequence: > 4000 (in 54.857 sec)
+
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input 5000
+5000 / 5000
+part 1: 3124 (in 0.374 sec)
+1700 / 2500
+1561176470569 (in 55.066 sec)
+
+# for the real input we needed between 4k and 5k rocks to find a pattern.
 ```
 
 Printed output as seen in the example:
