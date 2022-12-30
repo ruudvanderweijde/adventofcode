@@ -36,7 +36,7 @@ What is the surface area of your scanned lava droplet?
 </details>
 
 <details>
-<summary>Part one</summary>
+<summary>Part two</summary>
 Something seems off about your calculation. The cooling rate depends on exterior surface area, but your calculation also included the surface area of air pockets trapped in the lava droplet.
 
 Instead, consider only cube sides that could be reached by the water and steam as the lava droplet tumbles into the pond. The steam will expand to reach as much as possible, completely displacing any air on the outside of the lava droplet but never expanding diagonally.
@@ -48,9 +48,18 @@ What is the exterior surface area of your scanned lava droplet?
 
 Answers using php:
 ```
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input-test
-int(64)
-> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php -d memory_limit=-1 /code/one.php input
-int(4608)
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input-test
+64 (in 0.001 sec)
 
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/one.php input
+4608 (in 0.392 sec)
+
+
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input-test
+58 (in 0.01 sec)
+
+> docker container run --rm -v $(pwd):/code/ --workdir /code php:8.2-cli php /code/two.php input
+2652 (in 5.301 sec)
 ```
+
+Part two was inspired by: https://github.com/mariom100o/Advent-of-Code-Solutions/blob/main/2022/day18/part2.js

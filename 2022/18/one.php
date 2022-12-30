@@ -1,5 +1,6 @@
 <?php
 
+$start = microtime(true);
 $grid = array_map(
     fn (string $line) => array_map('intval', explode(',', $line)),
     explode(PHP_EOL, rtrim(file_get_contents($argv[1] ?? 'input-test')))
@@ -15,4 +16,7 @@ foreach ($grid as [$x, $y, $z]) {
     }
     $totalCount += $count;
 }
-var_dump($totalCount);
+
+echo $totalCount;
+echo ' (in ' . round(microtime(true)-$start, 3) . ' sec)';
+echo PHP_EOL;
