@@ -38,6 +38,3 @@ printf("part1: min_distance=%d in (%3f seconds)\n", solve(input: 1358, destinati
 
 $s = microtime(true);
 printf("part2: locations=%d in (%3f seconds)\n", solve(input: 1358, maxSteps: 50), microtime(true) - $s);
-
-//297 = too high
-//289 = too high
