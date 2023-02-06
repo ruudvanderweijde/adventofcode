@@ -529,3 +529,42 @@ Treating your puzzle input as a string of ASCII characters, what is the Knot Has
 part1: score=8536 (in 0.000172 sec)
 part2: hash=aff593797989d665349efe11bb4fd99b (in 0.018716 sec)
 ```
+
+<details>
+<summary>Day 11: Hex Ed</summary>
+Crossing the bridge, you've barely reached the other side of the stream when a program comes up to you, clearly in distress. "It's my child process," she says, "he's gotten lost in an infinite grid!"
+
+Fortunately for her, you have plenty of experience with infinite grids.
+
+Unfortunately for you, it's a hex grid.
+
+The hexagons ("hexes") in this grid are aligned such that adjacent hexes can be found to the north, northeast, southeast, south, southwest, and northwest:
+
+```
+  \ n  /
+nw +--+ ne
+  /    \
+-+      +-
+  \    /
+sw +--+ se
+  / s  \
+```
+
+You have the path the child process took. Starting where he started, you need to determine the fewest number of steps required to reach him. (A "step" means to move from the hex you are in to any adjacent hex.)
+
+For example:
+
+    ne,ne,ne is 3 steps away.
+    ne,ne,sw,sw is 0 steps away (back where you started).
+    ne,ne,s,s is 2 steps away (se,se).
+    se,sw,se,sw,sw is 3 steps away (s,s,sw).
+
+--- Part Two ---
+
+How many steps away is the furthest he ever got from his starting position?
+</details>
+
+```
+part1: distance=705 (in 0.013680 sec)
+part2: max=1469 (in 0.013861 sec)
+```
