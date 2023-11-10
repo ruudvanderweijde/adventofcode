@@ -2,11 +2,11 @@ from re import split
 
 
 def part1(filename):
-    return len([item for item in read_input(filename) if matchPart1(item)])
+    return len([item for item in read_input(filename) if match_part1(item)])
 
 
 def part2(filename):
-    return len([item for item in read_input(filename) if matchPart2(item)])
+    return len([item for item in read_input(filename) if match_part2(item)])
 
 
 def read_input(filename):
@@ -14,12 +14,12 @@ def read_input(filename):
         return [split(r'[-: ]+', line.rstrip()) for line in file]
 
 
-def matchPart1(item):
+def match_part1(item):
     start, end, pattern, password = item
     return int(start) <= password.count(pattern) <= int(end)
 
 
-def matchPart2(item):
+def match_part2(item):
     start, end, pattern, password = item
     return (password[int(start)-1] == pattern) ^ (password[int(end)-1] == pattern)
 

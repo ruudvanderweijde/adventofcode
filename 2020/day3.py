@@ -31,16 +31,6 @@ def read_input(filename):
         return [[*line.rstrip()] for line in file]
 
 
-def matchPart1(item):
-    start, end, pattern, password = item
-    return int(start) <= password.count(pattern) <= int(end)
-
-
-def matchPart2(item):
-    start, end, pattern, password = item
-    return (password[int(start)-1] == pattern) ^ (password[int(end)-1] == pattern)
-
-
 assert 7 == part1("test/day3.txt")
 print("Day 3, Part 1:", part1("input/day3.txt"))
 
