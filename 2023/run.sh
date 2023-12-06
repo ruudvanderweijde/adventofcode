@@ -1,5 +1,5 @@
 PYTHON_VERSION=3.11
-PYTHON_IMAGE="python:${PYTHON_VERSION:-"3.11"}-alpine"
+PYTHON_IMAGE=${PYTHON_IMAGE:-"python:${PYTHON_VERSION:-"3.11"}-alpine"}
 
 DIRECTORY=$(cd "$(dirname "$0")" && pwd)
 

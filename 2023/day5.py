@@ -34,5 +34,5 @@ assert 35 == main("test/day5.txt")
 print("Day 5, Part 1:", main("input/day5.txt"))
 
 assert 46 == main("test/day5.txt", part=2)
-# disabled because it takes about 2 hours to run
+# disabled because it takes about 2 hours to run, 20 minutes using pypy
 # print("Day 5, Part 2:", main("input/day5.txt", part=2))

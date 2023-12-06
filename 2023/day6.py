@@ -28,4 +28,4 @@ print("Day 6, Part 1:", main(read_input("input/day6.txt")), " in %s seconds " % 
 
 assert 71503 == main(read_input("test/day6.txt", part=2))
 st = time.time()
-print("Day 6, Part 2:", main(read_input("input/day6.txt", part=2)), " in %s seconds " % (time.time() - st))
+print("Day 6, Part 2:", main(read_input("input/day6.txt", part=2)), "in %s seconds " % (time.time() - st))
