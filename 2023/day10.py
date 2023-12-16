@@ -5,10 +5,16 @@ left = (0, -1)
 right = (0, 1)
 down = (1, 0)
 
-GREEN = '\033[92m'
-BACK_BLACK = '\033[40m'
-BOLD = '\033[1m'
-END = '\033[0m'
+
+class Colors:
+    BOLD = '\033[1m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    BACK_GREEN = '\033[42m'
+    BACK_BLUE = '\033[44m'
+    BACK_WHITE = '\033[47m'
+    END = '\033[0m'
+
 
 connections = {
     ".": [],
@@ -23,7 +29,7 @@ connections = {
 
 readable = {
     ".": ".",
-    "S": "S",
+    "S": "└",
     "|": "│",
     "-": "─",
     "L": "└",
@@ -44,23 +50,22 @@ def part2(filename):
     start, grid = get_grid(filename)
     paths = get_paths(start, grid)
     size = max(sorted(paths[0], key=lambda x: max(x[0], x[1]), reverse=True)[0]) + 1
-    print('-' * (size+4))
+    count = 0
     for i in range(size):
-        print('| ', end='')
+        inside = False
         for j in range(size):
-            if (i, j) == start:
-                print('S', end='')
-                continue
             if (i, j) in paths[0]:
-                # print(grid[i][j][0], end='')
-                # for manual counting:
-                print(readable[grid[i][j][0]], end='')
-                continue
-            print('.', end='')
-            # print(f'{BACK_BLACK}{GREEN}{BOLD}.{END}', end='')
-        print(' |')
-    print('-' * (size+4))
-    return 595  # manually counted
+                if grid[i][j][0] in "|JLS":
+                    inside = not inside
+                print(f'{Colors.BACK_WHITE}{Colors.RED}{readable[grid[i][j][0]]}{Colors.END}', end='')
+            else:
+                if inside:
+                    count += 1
+                    print(f'{Colors.BOLD}{Colors.BACK_GREEN}·{Colors.END}', end='')
+                else:
+                    print(f'{Colors.BACK_BLUE} {Colors.END}', end='')
+        print()
+    return count
 
 
 def get_paths(start, grid):
