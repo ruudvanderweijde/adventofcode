@@ -1,14 +1,12 @@
 import time
 
 
-class D:
-    up = 0
-    right = 1
-    down = 2
-    left = 3
+up = 0
+right = 1
+down = 2
+left = 3
 
-
-directions = [
+dirs = [
     (-1, 0),  # up
     (0, 1),  # right
     (1, 0),  # down
@@ -17,17 +15,17 @@ directions = [
 
 
 def part1(filename):
-    return visit(get_grid(filename), (0, 0), D.right)
+    return visit(get_grid(filename), (0, 0), right)
 
 
 def part2(filename):
     grid = get_grid(filename)
     score = 0
     for i in range(len(grid)):
-        score = max(score, visit(grid, (0, i), D.down))
-        score = max(score, visit(grid, (len(grid), i), D.up))
-        score = max(score, visit(grid, (i, 0), D.right))
-        score = max(score, visit(grid, (i, len(grid)), D.left))
+        score = max(score, visit(grid, (0, i), down))
+        score = max(score, visit(grid, (len(grid), i), up))
+        score = max(score, visit(grid, (i, 0), right))
+        score = max(score, visit(grid, (i, len(grid)), left))
     return score
 
 
@@ -47,49 +45,29 @@ def visit(grid, start_pos, start_dir):
 
         current_item = grid[current_pos[0]][current_pos[1]]
 
-        next_directions = []
+        next_dirs = []
         if current_item == '.':
-            next_directions = [current_dir]
+            next_dirs = [current_dir]
         elif current_item == '|':
-            if current_dir in [D.left, D.right]:
-                next_directions = [D.up, D.down]
+            if current_dir in [left, right]:
+                next_dirs = [up, down]
             else:
-                next_directions = [current_dir]
+                next_dirs = [current_dir]
         elif current_item == '-':
-            if current_dir in [D.up, D.down]:
-                next_directions = [D.left, D.right]
+            if current_dir in [up, down]:
+                next_dirs = [left, right]
             else:
-                next_directions = [current_dir]
+                next_dirs = [current_dir]
         elif current_item == '/':
-            match current_dir:
-                case D.up:
-                    next_directions = [D.right]
-                case D.right:
-                    next_directions = [D.up]
-                case D.down:
-                    next_directions = [D.left]
-                case D.left:
-                    next_directions = [D.down]
-                case _:
-                    assert False
+            mapping = {up: right, right: up, down: left, left: down}
+            next_dirs = [mapping[current_dir]]
+        elif current_item == '\\':
+            mapping = {up: left, right: down, down: right, left: up}
+            next_dirs = [mapping[current_dir]]
 
-        elif current_item == 'b':
-            match current_dir:
-                case D.up:
-                    next_directions = [D.left]
-                case D.right:
-                    next_directions = [D.down]
-                case D.down:
-                    next_directions = [D.right]
-                case D.left:
-                    next_directions = [D.up]
-                case _:
-                    assert False
-
-        for next_direction in next_directions:
-            next_position = (
-            current_pos[0] + directions[next_direction][0], current_pos[1] + directions[next_direction][1])
-            queue.append((next_position, next_direction, seen))
+        for next_dir in next_dirs:
+            next_pos = (current_pos[0] + dirs[next_dir][0], current_pos[1] + dirs[next_dir][1])
+            queue.append((next_pos, next_dir, seen))
 
     return len(visited)
 
@@ -106,7 +84,7 @@ def is_in_grid(grid, pos):
 
 def get_grid(filename):
     with open(filename) as file:
-        return [[j.replace('\\', 'b') for j in i.rstrip()] for i in file.readlines()]
+        return [[j for j in i.rstrip()] for i in file.readlines()]
 
 
 assert 46 == part1("test/day16.txt")
