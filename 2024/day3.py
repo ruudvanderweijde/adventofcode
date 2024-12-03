@@ -1,14 +1,8 @@
 from re import findall
 
 
-def part1(filename):
-    inp = read_input(filename, "mul\((\d+),(\d+)\)")
-    sums = [[int(l) * int(r) for l, r in pair] for pair in inp]
-    return sum(sum(s) for s in sums)
-
-
-def part2(filename):
-    inp = read_input(filename, "mul\((\d+),(\d+)\)|(do\(\))|(don't\(\))")
+def main(filename, pattern):
+    inp = read_input(filename, pattern)
     total = 0
     enabled = True
     for i in inp:
@@ -16,7 +10,6 @@ def part2(filename):
             l, r, do, dont = j
             if do:
                 enabled = True
-                continue
             elif dont:
                 enabled = False
             elif enabled:
@@ -29,8 +22,11 @@ def read_input(filename, pattern):
         return [findall(pattern, line.rstrip()) for line in file]
 
 
-assert 161 == part1("test/day3.txt", )
-print("Day 3, Part 1:", part1("input/day3.txt"))
+p1 = r'mul\((\d+),(\d+)\)|(do\(\))|(dummytext)'
+p2 = r'mul\((\d+),(\d+)\)|(do\(\))|(don\'t\(\))'
 
-assert 48 == part2("test/day3.txt")
-print("Day 3, Part 2:", part2("input/day3.txt"))
+assert 161 == main("test/day3.txt", p1)
+print("Day 3, Part 1:", main("input/day3.txt", p1))
+
+assert 48 == main("test/day3.txt", p2)
+print("Day 3, Part 2:", main("input/day3.txt", p2))
